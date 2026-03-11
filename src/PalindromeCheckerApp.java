@@ -1,23 +1,32 @@
-public class PalindromeCheckerApp{
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        // Original string
-        String original = "radar";
+        Scanner scanner = new Scanner(System.in);
+        Stack<Character> stack = new Stack<>();
 
-        // Variable for reversed string
+        System.out.print("Enter a string: ");
+        String original = scanner.nextLine();
+
         String reversed = "";
 
-        // Reverse string using for loop
-        for (int i = original.length() - 1; i >= 0; i--) {
-            reversed = reversed + original.charAt(i);
+        // Push characters into stack
+        for (int i = 0; i < original.length(); i++) {
+            stack.push(original.charAt(i));
         }
 
-        // Compare original and reversed
-        if (original.equals(reversed)) {
-            System.out.println(original + " is a Palindrome");
-        } else {
-            System.out.println(original + " is NOT a Palindrome");
+        // Pop characters from stack to build reversed string
+        while (!stack.isEmpty()) {
+            reversed = reversed + stack.pop();
         }
+
+        // Compare original and reversed strings
+        if (original.equals(reversed)) {
+            System.out.println("The string \"" + original + "\" is a Palindrome.");
+        } else {
+            System.out.println("The string \"" + original + "\" is NOT a Palindrome.");
+        }
+
+        scanner.close();
     }
 }
